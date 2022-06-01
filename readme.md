@@ -3,7 +3,8 @@ Usage:
 ```HOSTURL=10.0.0.1
 PORT=26
 DBNAME=tes
-TABLENAME=power```
+TABLENAME=power
+```
   - Run the app.py.
 ---
 
