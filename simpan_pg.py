@@ -2,9 +2,9 @@ import psycopg
 
 # Requires:
 # - postgresql supported by psycopg,
-# - database name, default 'monitor'
-# - user name, default 'ks'
-# - table name, default 'testhome'
+# - database name
+# - user name
+# - table name
 # - column 'volt' and 'freq'
 
 class simpan:

@@ -1,5 +1,5 @@
 import indera
-import simpan
+
 import time
 import os
 from dotenv import load_dotenv
@@ -10,6 +10,7 @@ load_dotenv()
 refs = [3028, 3110] # [volt, freq], see reference table
 opr_time = 30 # detik, boleh 24 * 3600
 interval = 5 # detik, disarankan >= 2 detik
+save_in = 'csv' # csv, pg
 
 host = os.getenv('HOSTURL')
 port = os.getenv('PORT')
@@ -18,7 +19,12 @@ db_name = os.getenv('DBNAME')
 table = os.getenv('TABLENAME')
 
 pm5350 = indera.indera(host, port)
-monitor = simpan.simpan(user, db_name, table)
+if save_in == 'csv':
+  import simpan_csv
+  monitor = simpan_csv.simpan(table, auto_time_name=True)
+elif save_in == 'pg':
+  import simpan_pg
+  monitor = simpan_pg.simpan(user, db_name, table)
 
 # Main app
 sleep_time = 0.8 * interval
