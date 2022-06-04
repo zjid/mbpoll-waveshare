@@ -3,10 +3,15 @@ Usage:
 ```
 MBHOSTURL=10.0.0.1
 MBPORT=26
+DBHOST=localhost
+DBPORT=1234
 DBUSER=user
-DBNAME=tes
-TABLENAME=power
+DBPASS=mypassword
+DBNAME=mydatabase
+TABLENAME=table1
 ```
+    MB = modbus
+    DB = database
   - Run the app.py.
 ---
 
