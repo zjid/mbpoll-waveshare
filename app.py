@@ -12,19 +12,24 @@ opr_time = 30 # detik, boleh 24 * 3600
 interval = 5 # detik, disarankan >= 2 detik
 save_in = 'csv' # csv, pg
 
-host = os.getenv('HOSTURL')
-port = os.getenv('PORT')
-user = os.getenv('USER')
-db_name = os.getenv('DBNAME')
+mb_host = os.getenv('MBHOSTURL')
+mb_port = os.getenv('MBPORT')
+db_params = {
+  'host': os.getenv('DBHOST'),
+  'port': os.getenv('DBPORT'),
+  'user': os.getenv('DBUSER'),
+  'password': os.getenv('DBPASS'),
+  'dbname': os.getenv('DBNAME')
+}
 table = os.getenv('TABLENAME')
 
-pm5350 = indera.indera(host, port)
+pm5350 = indera.indera(mb_host, mb_port)
 if save_in == 'csv':
   import simpan_csv
   monitor = simpan_csv.simpan(table, auto_time_name=True)
 elif save_in == 'pg':
   import simpan_pg
-  monitor = simpan_pg.simpan(user, db_name, table)
+  monitor = simpan_pg.simpan(db_params, table)
 
 # Main app
 sleep_time = 0.8 * interval

@@ -1,8 +1,9 @@
 Usage:
   - Create a .env file. Adjust the values based on your setup.
 ```
-HOSTURL=10.0.0.1
-PORT=26
+MBHOSTURL=10.0.0.1
+MBPORT=26
+DBUSER=user
 DBNAME=tes
 TABLENAME=power
 ```
