@@ -24,8 +24,11 @@ class simpan:
     with psycopg.connect(self.params) as conn:
       with conn.cursor() as cur:
         cur.execute(
-          'INSERT INTO %s (volt, freq) VALUES (%s, %s)', 
-          (self.table, volt, freq) )
+          # 'INSERT INTO %s (volt, freq) VALUES (%s, %s)', 
+          # (self.table, volt, freq)
+          'INSERT INTO powerlog (volt, freq) VALUES (%s, %s)', 
+          (volt, freq)
+        )
         conn.commit()
 
   def fetch(self, size = 10):
