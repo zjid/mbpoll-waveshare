@@ -33,13 +33,13 @@ elif save_in == 'pg':
   monitor = simpan_pg.simpan(db_params, table)
 
 # Main app
-interval -= latency
-sleep_time = 0.8 * interval
+
+# sleep_time = 0.8 * interval
 expected_count = int(opr_time / interval)
 i = 0
 tstart = time.time()
 tend = tstart + opr_time + 0.1
-tnext = tstart + interval
+tnext = tstart + interval - latency
 print('Recording started')
 while True:
   if time.time() >= tend: break
@@ -68,10 +68,10 @@ while True:
   progress = str(int(progress)) + '%'
   print(progress, 'volt:', volt, 'freq:', freq)
   i += 1
-  time.sleep(sleep_time)
+  # time.sleep(sleep_time)
   while True:
     if time.time() >= tnext: break
-  tnext += interval
+  tnext += interval - latency
   
 print('Recording finished! Count:', i, '/', expected_count)
 
