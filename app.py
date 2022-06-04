@@ -8,9 +8,10 @@ os.nice(19)
 load_dotenv()
 
 refs = [3028, 3110] # [volt, freq], see reference table
-opr_time = 30 # detik, boleh 24 * 3600
-interval = 5 # detik, disarankan >= 2 detik
-save_in = 'csv' # csv, pg
+opr_time = 30 # seconds, i.e. 24 * 3600
+latency = 2 # between plant and database
+interval = 5 # seconds, must be lot higher than latency
+save_in = 'pg' # csv, pg
 
 mb_host = os.getenv('MBHOSTURL')
 mb_port = os.getenv('MBPORT')
@@ -32,6 +33,7 @@ elif save_in == 'pg':
   monitor = simpan_pg.simpan(db_params, table)
 
 # Main app
+interval -= latency
 sleep_time = 0.8 * interval
 expected_count = int(opr_time / interval)
 i = 0
