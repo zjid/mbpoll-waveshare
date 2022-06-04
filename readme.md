@@ -22,13 +22,12 @@ The app runs under this setup:
   
 Requirements:
   - linux
+  - python 3.7+
   - mbpoll
+  - libpq-dev
 Python packages:
   - dotenv
-  - os
-  - psycopg
-  - subprocess
-  - time
+  - psycopg[python/c]
 
 Still no success with this setup:
   - King Pigeon M100T
